@@ -47,7 +47,7 @@ if (fs.existsSync('vercel.json')) {
             const graphRoute = routes.find(r => r.source === '/3d-graph' || r.src === '/3d-graph');
             
             const homeDest = homeRoute && (homeRoute.destination || homeRoute.dest);
-            if (homeDest === '/landing/index.html') {
+            if (homeDest === '/index.html' || homeDest === '/landing/index.html') {
                 console.log('✅ Home route configured correctly');
             } else {
                 console.log('❌ Home route not configured correctly');

@@ -9,7 +9,7 @@
     "dev:graph": "npx http-server ./3d-force-graph -p 8082 -o",
     "check": "node check-deployment.js",
     "check:domain": "node check-domain-setup.js",
-    "build": "echo 'Static site - no build required'",
+    "build": "powershell -Command \"New-Item -ItemType Directory -Force -Path public; Copy-Item -Path landing/* -Destination public/ -Recurse -Force; Copy-Item -Path 3d-force-graph -Destination public/3d-force-graph -Recurse -Force\"",
     "start": "npx http-server . -p 3000"
   },
   "keywords": [

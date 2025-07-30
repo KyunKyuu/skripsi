@@ -102,7 +102,47 @@ skripsi/
 
 ## 🔧 Troubleshooting
 
-### Problem 1: Blank Page saat Klik Navigasi
+### Problem 1: "No Output Directory named 'public' found"
+
+✅ **SUDAH DIPERBAIKI** - Error ini telah diselesaikan dengan konfigurasi berikut:
+
+**Solusi yang Diterapkan:**
+1. **Build Script di package.json:**
+   ```json
+   {
+     "scripts": {
+       "build": "if not exist public mkdir public && xcopy /E /I /Y landing\* public\ && xcopy /E /I /Y 3d-force-graph\* public\3d-force-graph\"
+     }
+   }
+   ```
+
+2. **Konfigurasi vercel.json:**
+   ```json
+   {
+     "buildCommand": "npm run build",
+     "outputDirectory": "public",
+     "installCommand": "npm install"
+   }
+   ```
+
+3. **Struktur Folder Public:**
+   ```
+   public/
+   ├── index.html (dari landing/)
+   ├── styles.css (dari landing/)
+   └── 3d-force-graph/
+       ├── index.html
+       ├── script.js
+       ├── style.css
+       └── json/
+   ```
+
+**Jika masih ada masalah:**
+- Jalankan `npm run build` secara lokal untuk test
+- Pastikan folder `public/` terbuat dengan benar
+- Cek `npm run check` untuk verifikasi konfigurasi
+
+### Problem 2: Blank Page saat Klik Navigasi
 
 **Gejala:** Tombol "Visualisasi 3D Graf" mengarah ke halaman kosong
 

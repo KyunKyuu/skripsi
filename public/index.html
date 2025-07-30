@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeguhIqbal - Blockchain Forensic Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.38/build/spline-viewer.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-text">Teguh Iqbal</div>
+                &nbsp;
+                <div class="logo-dot"></div> &nbsp;
+            </div>
+            <div class="subtitle-header">Tugas Akhir STMIK AMIK BANDUNG</div>
+        </div>
+        <div class="nav-indicator">●</div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-layout">
+                <!-- Left Panel - Rumusan Masalah 1 -->
+                <div class="left-panel">
+                    <h1 class="panel-title">Rumusan Masalah 1</h1>
+                    <p class="panel-subtitle">Analisis Pola Drain Wallet<br>— Visualisasi Graf</p>
+                    <div class="btn-arrow">
+                        <span>Lihat Visualisasi 3D Graf</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Center - 3D Robot -->
+                <div class="center-visual">
+                    <div class="spline-container">
+                        <spline-viewer
+                            url="https://prod.spline.design/LqmBwdVJLst56gKQ/scene.splinecode"></spline-viewer>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Rumusan Masalah 2 -->
+                <div class="right-panel">
+                    <h2 class="panel-title">Rumusan Masalah 2</h2>
+                    <p class="panel-subtitle">Bagaimana implementasi algoritma tanda tangan digital Ed25519 pada wallet
+                        non-kustodial di Solana</p>
+                    <div class="panel-info">
+                        <div>Replay Attack,</div>
+                        <div>Signature Malleability,</div>
+                        <div>Nonce Reuse</div>
+                    </div>
+                    <div class="btn-arrow">
+                        <span>Hasil Analisis </span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Button click handlers
+        const leftButton = document.querySelector('.left-panel .btn-arrow');
+        const rightButton = document.querySelector('.right-panel .btn-arrow');
+
+        if (leftButton) {
+            leftButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                console.log('Visualisasi 3D Graf clicked');
+                // Navigate to 3D Force Graph page
+                window.location.href = '/3d-graph';
+            });
+        }
+
+        if (rightButton) {
+            rightButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                console.log('Rumusan Masalah 2 clicked');
+                // Add your navigation logic here
+            });
+        }
+
+        // Spline viewer interaction
+        const splineViewer = document.querySelector('spline-viewer');
+        if (splineViewer) {
+            splineViewer.addEventListener('load', () => {
+                console.log('Spline scene loaded successfully');
+            });
+        }
+
+        // Add hover effects and micro-interactions
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            button.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-2px)';
+            });
+
+            button.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Simple visual effects
+        function createSimpleFloatingElements() {
+            const hero = document.querySelector('.hero');
+
+            for (let i = 0; i < 5; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.left = Math.random() * 100 + '%';
+                element.style.animationDelay = Math.random() * 3 + 's';
+                hero.appendChild(element);
+            }
+        }
+
+        // Simple panel particles
+        function createSimplePanelParticles() {
+            const panels = document.querySelectorAll('.left-panel, .right-panel');
+            panels.forEach(panel => {
+                for (let i = 0; i < 3; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 3 + 's';
+                    panel.appendChild(particle);
+                }
+            });
+        }
+
+        // Initialize simple effects
+        document.addEventListener('DOMContentLoaded', () => {
+            createSimpleFloatingElements();
+            createSimplePanelParticles();
+        });
+
+        // Enhanced button interactions
+        document.querySelectorAll('.btn-arrow').forEach(button => {
+            button.addEventListener('mouseenter', function () {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+                this.style.boxShadow = '0 10px 30px rgba(255, 107, 53, 0.4)';
+            });
+
+            button.addEventListener('mouseleave', function () {
+                this.style.transform = 'scale(1) rotate(0deg)';
+                this.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.2)';
+            });
+        });
+    </script>
+</body>
+
+</html>

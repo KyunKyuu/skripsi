@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/landing/index.html"
+      "destination": "/index.html"
     },
     {
       "source": "/3d-graph",
@@ -11,10 +11,6 @@
     {
       "source": "/3d-force-graph/(.*)",
       "destination": "/3d-force-graph/$1"
-    },
-    {
-      "source": "/landing/(.*)",
-      "destination": "/landing/$1"
     }
   ],
   "headers": [
@@ -51,6 +47,7 @@
   },
   "regions": ["sin1"],
   "framework": null,
-  "buildCommand": null,
-  "outputDirectory": "."
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
+  "installCommand": "npm install"
 }
