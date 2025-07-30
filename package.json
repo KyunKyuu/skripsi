@@ -9,7 +9,7 @@
     "dev:graph": "npx http-server ./3d-force-graph -p 8082 -o",
     "check": "node check-deployment.js",
     "check:domain": "node check-domain-setup.js",
-    "build": "mkdir -p public && cp -r landing/* public/ && mkdir -p public/3d-force-graph && cp -r 3d-force-graph/* public/3d-force-graph/",
+    "build": "node -e \"const fs = require('fs'); const path = require('path'); if (fs.existsSync('public')) fs.rmSync('public', {recursive: true}); fs.mkdirSync('public', {recursive: true}); fs.cpSync('landing', 'public', {recursive: true}); fs.mkdirSync('public/3d-force-graph', {recursive: true}); fs.cpSync('3d-force-graph', 'public/3d-force-graph', {recursive: true});\"",
     "start": "npx http-server . -p 3000"
   },
   "keywords": [
@@ -26,16 +26,11 @@
     "http-server": "^14.1.1"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": "18.x"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/yourusername/skripsi-graf.git"
   },
-  "homepage": "https://skripsi.teguh.online",
-  "vercel": {
-    "framework": null,
-    "buildCommand": null,
-    "outputDirectory": "."
-  }
+  "homepage": "https://skripsi.teguh.online"
 }
