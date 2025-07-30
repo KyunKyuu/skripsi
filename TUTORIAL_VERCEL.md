@@ -106,6 +106,58 @@ skripsi/
 
 ✅ **SUDAH DIPERBAIKI** - Error ini telah diselesaikan dengan konfigurasi berikut:
 
+### Problem 2: 404 Error pada Route /3d-graph
+
+**Gejala:**
+- Homepage (/) berfungsi normal
+- Route `/3d-graph` menampilkan "404: NOT_FOUND"
+- Error ID: `sin1::xxxxx-xxxxxxxxx-xxxxxxxxxxxx`
+
+**Penyebab:**
+- Konfigurasi routing di vercel.json tidak tepat
+- Path destination tidak sesuai dengan struktur folder
+
+**Solusi yang Diterapkan:**
+1. **Update vercel.json routing:**
+   ```json
+   {
+     "rewrites": [
+       {
+         "source": "/",
+         "destination": "/index.html"
+       },
+       {
+         "source": "/3d-graph",
+         "destination": "/3d-force-graph/"
+       },
+       {
+         "source": "/3d-force-graph/(.*)",
+         "destination": "/3d-force-graph/$1"
+       }
+     ],
+     "cleanUrls": true,
+     "trailingSlash": false
+   }
+   ```
+
+2. **Verifikasi struktur folder public/:**
+   ```
+   public/
+   ├── index.html
+   ├── styles.css
+   └── 3d-force-graph/
+       ├── index.html
+       ├── script.js
+       ├── style.css
+       └── json/
+   ```
+
+**Langkah Debugging:**
+1. Pastikan build berhasil: `npm run build`
+2. Cek struktur folder: `npm run check`
+3. Re-deploy di Vercel dashboard
+4. Test route: `https://your-app.vercel.app/3d-graph`
+
 **Solusi yang Diterapkan:**
 1. **Build Script di package.json:**
    ```json

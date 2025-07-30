@@ -6,7 +6,7 @@
     },
     {
       "source": "/3d-graph",
-      "destination": "/3d-force-graph/index.html"
+      "destination": "/3d-force-graph/"
     },
     {
       "source": "/3d-force-graph/(.*)",
@@ -46,5 +46,7 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "public",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "cleanUrls": true,
+  "trailingSlash": false
 }
