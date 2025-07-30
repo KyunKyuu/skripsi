@@ -10,23 +10,55 @@ A 3D interactive graph visualization project for blockchain forensic analysis, s
 
 ### Local Development
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/skripsi-graf.git
+# Clone repository
+git clone https://github.com/username/skripsi-graf.git
 cd skripsi-graf
 
-# Install dependencies (optional)
+# Install dependencies
 npm install
 
-# Start development server
-npm run dev
-# or
-npx http-server . -p 3000 -o
+# Start development servers
+npm run dev        # Both servers
+npm run dev:landing # Landing page only (port 8081)
+npm run dev:graph   # 3D Graph only (port 8082)
+
+# Check deployment readiness
+npm run check
 ```
 
-### Deploy to Vercel
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically with zero configuration
+### Vercel Deployment
+```bash
+# 1. Upload to GitHub
+git add .
+git commit -m "Deploy Skripsi Graf"
+git push origin main
+
+# 2. Deploy to Vercel
+# - Connect GitHub repository to Vercel
+# - Zero configuration needed!
+# - Automatic CORS and routing setup
+```
+
+### 🌐 Custom Domain Setup
+
+Untuk menggunakan domain custom seperti `skripsi.teguh.online`:
+
+1. **Setup DNS Record**:
+   ```
+   Type: CNAME
+   Name: skripsi
+   Target: cname.vercel-dns.com
+   ```
+
+2. **Tambah Domain di Vercel**:
+   - Vercel Dashboard → Settings → Domains
+   - Add Domain: `skripsi.teguh.online`
+
+3. **Verifikasi**:
+   - SSL otomatis aktif
+   - Website dapat diakses di `https://skripsi.teguh.online`
+
+📖 **Panduan lengkap**: [SETUP_CUSTOM_DOMAIN.md](./SETUP_CUSTOM_DOMAIN.md)
 
 ## 📁 Project Structure
 

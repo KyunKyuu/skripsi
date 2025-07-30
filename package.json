@@ -8,6 +8,7 @@
     "dev:landing": "npx http-server ./landing -p 8081 -o",
     "dev:graph": "npx http-server ./3d-force-graph -p 8082 -o",
     "check": "node check-deployment.js",
+    "check:domain": "node check-domain-setup.js",
     "build": "echo 'Static site - no build required'",
     "start": "npx http-server . -p 3000"
   },
@@ -31,7 +32,7 @@
     "type": "git",
     "url": "https://github.com/yourusername/skripsi-graf.git"
   },
-  "homepage": "https://skripsi-graf.vercel.app",
+  "homepage": "https://skripsi.teguh.online",
   "vercel": {
     "framework": null,
     "buildCommand": null,
