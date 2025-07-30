@@ -40,12 +40,9 @@
       ]
     }
   ],
-  "functions": {
-    "app/api/**/*.js": {
-      "maxDuration": 30
-    }
-  },
-  "regions": ["sin1"],
+  "regions": [
+    "sin1"
+  ],
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "public",
