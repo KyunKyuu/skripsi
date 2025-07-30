@@ -1,0 +1,40 @@
+{
+  "name": "skripsi-graf",
+  "version": "1.0.0",
+  "description": "3D Force-Directed Graph visualization for blockchain wallet drain analysis",
+  "main": "landing/index.html",
+  "scripts": {
+    "dev": "npx http-server . -p 3000 -o",
+    "dev:landing": "npx http-server ./landing -p 8081 -o",
+    "dev:graph": "npx http-server ./3d-force-graph -p 8082 -o",
+    "check": "node check-deployment.js",
+    "build": "echo 'Static site - no build required'",
+    "start": "npx http-server . -p 3000"
+  },
+  "keywords": [
+    "blockchain",
+    "forensics",
+    "3d-graph",
+    "visualization",
+    "solana",
+    "wallet-analysis"
+  ],
+  "author": "Skripsi Graf",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/skripsi-graf.git"
+  },
+  "homepage": "https://skripsi-graf.vercel.app",
+  "vercel": {
+    "framework": null,
+    "buildCommand": null,
+    "outputDirectory": "."
+  }
+}
