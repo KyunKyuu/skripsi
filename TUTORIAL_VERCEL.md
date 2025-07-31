@@ -158,6 +158,52 @@ skripsi/
 3. Re-deploy di Vercel dashboard
 4. Test route: `https://your-app.vercel.app/3d-graph`
 
+### 3. 404 Error pada Route '/3d-force-graph/' (Trailing Slash)
+
+**Gejala:**
+- Link dengan trailing slash `/3d-force-graph/` menghasilkan 404 error
+- Navigation dari landing page tidak berfungsi
+
+**Penyebab:**
+- Vercel.json tidak memiliki rewrite rule untuk path dengan trailing slash
+- Hanya ada rule untuk `/3d-force-graph/(.*)` yang tidak menangkap path kosong
+
+**Solusi:**
+1. **Tambahkan multiple rewrite rules di vercel.json:**
+   ```json
+   {
+     "rewrites": [
+       {
+         "source": "/",
+         "destination": "/index.html"
+       },
+       {
+         "source": "/3d-graph",
+         "destination": "/3d-force-graph/index.html"
+       },
+       {
+         "source": "/3d-force-graph",
+         "destination": "/3d-force-graph/index.html"
+       },
+       {
+         "source": "/3d-force-graph/",
+         "destination": "/3d-force-graph/index.html"
+       },
+       {
+         "source": "/3d-force-graph/(.*)",
+         "destination": "/3d-force-graph/$1"
+       }
+     ]
+   }
+   ```
+
+2. **Rebuild dan redeploy:**
+   ```bash
+   npm run build
+   npm run check
+   # Push ke GitHub dan redeploy di Vercel
+   ```
+
 **Solusi yang Diterapkan:**
 1. **Build Script di package.json:**
    ```json

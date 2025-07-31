@@ -9,6 +9,14 @@
       "destination": "/3d-force-graph/index.html"
     },
     {
+      "source": "/3d-force-graph",
+      "destination": "/3d-force-graph/index.html"
+    },
+    {
+      "source": "/3d-force-graph/",
+      "destination": "/3d-force-graph/index.html"
+    },
+    {
       "source": "/3d-force-graph/(.*)",
       "destination": "/3d-force-graph/$1"
     }
