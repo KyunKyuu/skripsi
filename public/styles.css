@@ -752,68 +752,151 @@ spline-viewer:hover {
 /* Responsive Design */
 @media (max-width: 1200px) {
     .panel-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .panel-subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .left-panel,
     .right-panel {
-        width: 40vw;
-        padding: var(--spacing-xl) var(--spacing-lg);
+        width: 38vw;
+        padding: var(--spacing-xl) var(--spacing-md);
     }
 
     .center-visual {
-        width: 20vw;
+        width: 24vw;
     }
 
     .spline-container {
-        width: 400px;
-        height: 400px;
+        width: 380px;
+        height: 380px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-layout {
+        gap: 1.5rem;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 42vw;
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .center-visual {
+        width: 16vw;
+    }
+
+    .panel-title {
+        font-size: 1.8rem;
+    }
+
+    .spline-container {
+        width: 320px;
+        height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-layout {
+        gap: 1rem;
+    }
+
+    .center-visual {
+        height: 40vh;
+        min-height: 250px;
+        padding: 0.5rem;
+    }
+
+    .left-panel,
+    .right-panel {
+        padding: var(--spacing-md);
+        min-height: 30vh;
+    }
+
+    .panel-title {
+        font-size: 1.25rem;
+    }
+
+    .panel-subtitle {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .spline-container {
+        width: 220px;
+        height: 220px;
+    }
+
+    .btn-arrow {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 768px) {
     .hero-layout {
-        flex-direction: column;
+        flex-direction: column-reverse;
         height: auto;
+        gap: 2rem;
     }
 
-    .left-panel,
-    .right-panel,
     .center-visual {
         width: 100vw;
+        height: 50vh;
+        min-height: 300px;
+        padding: 1rem;
+        order: -1; /* Robot di paling atas */
+    }
+
+    .left-panel {
+        width: 100vw;
         height: auto;
-        min-height: 40vh;
-        padding: var(--spacing-xl) var(--spacing-lg);
+        min-height: 25vh;
+        padding: var(--spacing-lg) var(--spacing-md);
+        order: 1; /* RM1 di bawah robot */
+    }
+
+    .right-panel {
+        width: 100vw;
+        height: auto;
+        min-height: 25vh;
+        padding: var(--spacing-lg) var(--spacing-md);
+        order: 2; /* RM2 di paling bawah */
     }
 
     .panel-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
         text-align: center;
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-sm);
     }
 
     .panel-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;
         text-align: center;
-        margin-bottom: var(--spacing-lg);
-    }
-
-    .panel-description {
         margin-bottom: var(--spacing-md);
     }
 
+    .panel-description {
+        margin-bottom: var(--spacing-sm);
+    }
+
     .btn-arrow {
-        width: 50px;
-        height: 50px;
+        width: auto;
+        height: auto;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        margin: 0 auto;
+        display: block;
     }
 
     .spline-container {
-        width: 350px;
-        height: 350px;
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
     }
 
     .header-content {
@@ -821,7 +904,7 @@ spline-viewer:hover {
     }
 
     .logo {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 }
 
