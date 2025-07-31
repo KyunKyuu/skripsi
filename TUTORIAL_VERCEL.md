@@ -255,6 +255,50 @@ Gunakan `routes` alih-alih `rewrites` di `vercel.json`:
 }
 ```
 
+### 5. Mixed Routing Properties Error
+
+**Gejala:**
+- Error: "Mixed routing properties"
+- Build failed dengan pesan konflik konfigurasi
+
+**Penyebab:**
+- Tidak bisa menggunakan `routes` bersamaan dengan `headers`, `cleanUrls`, atau `trailingSlash`
+- `routes` adalah primitive level rendah yang tidak bisa digabung dengan properti lain
+
+**Solusi Final:**
+Integrasikan semua konfigurasi ke dalam `routes` saja:
+
+```json
+{
+  "routes": [
+    {
+      "src": "/3d-graph",
+      "dest": "/3d-force-graph/index.html"
+    },
+    {
+      "src": "/3d-force-graph/?$",
+      "dest": "/3d-force-graph/index.html"
+    },
+    {
+      "src": "/3d-force-graph/(.*)",
+      "dest": "/3d-force-graph/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Authorization"
+      }
+    }
+  ],
+  "regions": ["iad1"],
+  "buildCommand": "npm run build",
+  "outputDirectory": "public"
+}
+```
+
 **Struktur folder yang diharapkan:**
 ```
 public/
