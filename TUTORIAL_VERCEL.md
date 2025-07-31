@@ -204,6 +204,79 @@ skripsi/
    # Push ke GitHub dan redeploy di Vercel
    ```
 
+### 4. Persistent 404 Error - Alternative Solution dengan Routes
+
+**Gejala:**
+- Semua solusi `rewrites` masih menghasilkan 404 error
+- Build berhasil tapi routing tidak berfungsi
+
+**Penyebab:**
+- Vercel mungkin tidak mengenali `rewrites` dengan benar
+- Perlu menggunakan `routes` yang lebih eksplisit
+
+**Solusi Alternatif:**
+Gunakan `routes` alih-alih `rewrites` di `vercel.json`:
+
+```json
+{
+  "routes": [
+    {
+      "src": "/3d-graph",
+      "dest": "/3d-force-graph/index.html"
+    },
+    {
+      "src": "/3d-force-graph/?$",
+      "dest": "/3d-force-graph/index.html"
+    },
+    {
+      "src": "/3d-force-graph/(.*)",
+      "dest": "/3d-force-graph/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Authorization" }
+      ]
+    }
+  ],
+  "regions": ["iad1"],
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false
+}
+```
+
+**Struktur folder yang diharapkan:**
+```
+public/
+├── index.html          # Landing page
+├── styles.css
+└── 3d-force-graph/
+    ├── index.html      # 3D Graph page
+    ├── script.js
+    ├── style.css
+    └── json/
+        ├── 2PvbiHwb.json
+        ├── FbpCfLxM.json
+        ├── Qcsb89L6.json
+        └── ndjGh8iM.json
+```
+
+**Langkah-langkah:**
+1. Update `vercel.json` dengan konfigurasi `routes` di atas
+2. Jalankan `npm run build`
+3. Push ke GitHub dan redeploy di Vercel
+4. Test route: `https://your-app.vercel.app/3d-graph`
+
 **Solusi yang Diterapkan:**
 1. **Build Script di package.json:**
    ```json
