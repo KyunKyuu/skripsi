@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Test</title>
+</head>
+<body>
+    <h1>JavaScript Test</h1>
+    <button onclick="testFetch()">Test Fetch</button>
+    <div id="result"></div>
+    
+    <script>
+        console.log('Script loaded');
+        
+        function testFetch() {
+            console.log('testFetch called');
+            document.getElementById('result').innerHTML = 'Testing...';
+            
+            fetch('json/2PvbiHwb.json')
+                .then(response => {
+                    console.log('Response:', response.status);
+                    document.getElementById('result').innerHTML = 'Response: ' + response.status;
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data:', data);
+                    document.getElementById('result').innerHTML = 'Success! Nodes: ' + data.nodes.length;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerHTML = 'Error: ' + error.message;
+                });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded');
+            document.getElementById('result').innerHTML = 'Ready';
+        });
+    </script>
+</body>
+</html>

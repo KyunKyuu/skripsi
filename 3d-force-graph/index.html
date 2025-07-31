@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasbor Analisis Forensik Blockchain - Solana</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated Star Background -->
+    <div class="star-background" id="starBackground"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-atom"></i>
+        </div>
+        <div class="loading-text">Memuat Data Forensik...</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <button id="backToHome" class="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Kembali ke Homepage</span>
+                    </button>
+                </div>
+                <div class="header-title">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>Analisis Forensik Blockchain</h1>
+                    <span class="subtitle">Solana Drain Wallet Investigation</span>
+                </div>
+
+                <div class="case-selector">
+                    <label for="caseSelect">
+                        <i class="fas fa-wallet"></i>
+                        Pilih Wallet:
+                    </label>
+                    <select id="caseSelect">
+                        <option value="">-- Pilih Wallet --</option>
+                        <option value="2PvbiHwb">2PvbiHwb</option>
+                        <option value="FbpCfLxM">FbpCfLxM</option>
+                        <option value="Qcsb89L6">Qcsb89L6</option>
+                        <option value="ndjGh8iM">ndjGh8iM</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Container - Two Column Layout -->
+        <div id="main-container">
+            <!-- Left Column - Panel Analisis -->
+            <div id="left-column" class="panel-analisis">
+                <div class="panel-header">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Metrik Analisis</h2>
+                </div>
+
+                <!-- Attack Info -->
+                <div class="attack-info">
+                    <div class="info-item">
+                        <label><i class="fas fa-crosshairs"></i> Tipologi Serangan:</label>
+                        <span id="attackTypology">-</span>
+                    </div>
+                    <div class="info-item">
+                        <label><i class="fas fa-user-secret"></i> Alamat Drainer:</label>
+                        <span id="drainerAddress">-</span>
+                    </div>
+                </div>
+
+                <!-- Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card victims" data-highlight="victim">
+                        <div class="metric-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="totalVictims">0</div>
+                            <div class="metric-label">Total Korban Terdampak</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card burst-index" data-highlight="burst">
+                        <div class="metric-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="burstIndex">0</div>
+                            <div class="metric-label">Indeks Ledakan Transaksi</div>
+                            <div class="metric-sublabel" id="burstSubLabel">Korban Unik / Jam Puncak</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card financial-loss" data-highlight="financial">
+                        <div class="metric-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="estimatedLoss">0</div>
+                            <div class="metric-label">Estimasi Kerugian Terukur</div>
+                            <div class="metric-sublabel" id="lossBreakdown">SOL & USDC</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card asset-diversity" data-highlight="diversity">
+                        <div class="metric-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="assetDiversity">0</div>
+                            <div class="metric-label">Diversitas Aset Tercuri</div>
+                            <div class="metric-sublabel">Jenis Aset Berbeda</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card flows" data-highlight="link">
+                        <div class="metric-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="totalFlows">0</div>
+                            <div class="metric-label">Aliran Dana</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card drainer" data-highlight="drainer">
+                        <div class="metric-icon">
+                            <i class="fas fa-skull-crossbones"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="drainerNodes">0</div>
+                            <div class="metric-label">Node Drainer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="legend">
+                    <h3><i class="fas fa-palette"></i> Legenda Node</h3>
+                    <div class="legend-items">
+                        <div class="legend-item" data-type="drainer">
+                            <div class="legend-color drainer-color"></div>
+                            <span>Drainer (Penyerang)</span>
+                        </div>
+                        <div class="legend-item" data-type="victim">
+                            <div class="legend-color victim-color"></div>
+                            <span>Victim (Korban)</span>
+                        </div>
+                        <div class="legend-item" data-type="other">
+                            <div class="legend-color other-color"></div>
+                            <span>Other (Lainnya)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <h3><i class="fas fa-cogs"></i> Kontrol Graf</h3>
+                    <div class="control-buttons">
+                        <button id="focusDrainer" class="control-btn">
+                            <i class="fas fa-crosshairs"></i>
+                            Fokus Drainer
+                        </button>
+                        <button id="resetView" class="control-btn">
+                            <i class="fas fa-home"></i>
+                            Reset View
+                        </button>
+                        <button id="toggleParticles" class="control-btn">
+                            <i class="fas fa-magic"></i>
+                            Toggle Partikel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div id="right-column">
+                <!-- Graph Container (Baris Atas) -->
+                <div id="graph-container" class="graph-container">
+                    <div id="3d-graph"></div>
+
+                    <!-- Camera Controls -->
+                    <div class="camera-controls">
+                        <button id="zoomIn" class="camera-btn" title="Zoom In">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button id="zoomOut" class="camera-btn" title="Zoom Out">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button id="resetCamera" class="camera-btn" title="Reset Camera">
+                            <i class="fas fa-home"></i>
+                        </button>
+                    </div>
+
+                    <!-- Graph Info Overlay -->
+                    <div class="graph-info" id="graphInfo">
+                        <div class="info-text">Pilih studi kasus untuk memulai analisis</div>
+                    </div>
+                </div>
+
+                <!-- AI Summary Panel (Baris Bawah) -->
+                <div id="ai-summary-panel" class="ai-summary-panel">
+                    <div class="ai-summary-card">
+                        <div class="ai-summary-header">
+                            <h3><i class="fas fa-brain"></i> Ringkasan Analitis (AI-Generated)</h3>
+                            <button id="regenerateAI" class="ai-regenerate-btn" style="display: none;">
+                                <i class="fas fa-sync-alt"></i>
+                                Regenerate
+                            </button>
+                        </div>
+                        <div class="ai-summary-container">
+                            <div class="ai-summary-loader hidden" id="ai-summary-loader">
+                                <div class="loader-spinner">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <span>Menganalisis data dengan AI...</span>
+                            </div>
+                            <div class="ai-summary-content" id="ai-summary-content">
+                                Pilih studi kasus untuk mendapatkan ringkasan analitis yang dihasilkan oleh AI.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.78.3/dist/3d-force-graph.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
