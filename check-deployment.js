@@ -88,7 +88,7 @@ console.log('');
 console.log('🔗 Checking navigation links:');
 if (fs.existsSync('landing/index.html')) {
     const landingContent = fs.readFileSync('landing/index.html', 'utf8');
-    if (landingContent.includes('/3d-graph')) {
+    if (landingContent.includes('/3d-graph') || landingContent.includes('/3d-force-graph/')) {
         console.log('✅ Landing page navigation configured');
     } else {
         console.log('❌ Landing page navigation not configured');
