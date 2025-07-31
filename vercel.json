@@ -5,7 +5,11 @@
       "dest": "/3d-force-graph/index.html"
     },
     {
-      "src": "/3d-force-graph/?$",
+      "src": "/3d-force-graph",
+      "dest": "/3d-force-graph/index.html"
+    },
+    {
+      "src": "/3d-force-graph/",
       "dest": "/3d-force-graph/index.html"
     },
     {

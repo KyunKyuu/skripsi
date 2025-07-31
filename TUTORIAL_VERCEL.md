@@ -266,7 +266,7 @@ Gunakan `routes` alih-alih `rewrites` di `vercel.json`:
 - `routes` adalah primitive level rendah yang tidak bisa digabung dengan properti lain
 
 **Solusi Final:**
-Integrasikan semua konfigurasi ke dalam `routes` saja:
+Integrasikan semua konfigurasi ke dalam `routes` saja dengan routing eksplisit:
 
 ```json
 {
@@ -276,7 +276,11 @@ Integrasikan semua konfigurasi ke dalam `routes` saja:
       "dest": "/3d-force-graph/index.html"
     },
     {
-      "src": "/3d-force-graph/?$",
+      "src": "/3d-force-graph",
+      "dest": "/3d-force-graph/index.html"
+    },
+    {
+      "src": "/3d-force-graph/",
       "dest": "/3d-force-graph/index.html"
     },
     {
@@ -298,6 +302,11 @@ Integrasikan semua konfigurasi ke dalam `routes` saja:
   "outputDirectory": "public"
 }
 ```
+
+**Catatan Penting:**
+- Route `/3d-force-graph` dan `/3d-force-graph/` harus didefinisikan secara eksplisit
+- Regex pattern `/?$` tidak selalu bekerja dengan baik di Vercel
+- Urutan routes penting - yang lebih spesifik harus di atas
 
 **Struktur folder yang diharapkan:**
 ```
