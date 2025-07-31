@@ -1,12 +1,15 @@
 {
+  "redirects": [
+    {
+      "source": "/3d-graph",
+      "destination": "/3d-force-graph/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/",
       "destination": "/index.html"
-    },
-    {
-      "source": "/3d-graph",
-      "destination": "/3d-force-graph/index.html"
     },
     {
       "source": "/3d-force-graph",
