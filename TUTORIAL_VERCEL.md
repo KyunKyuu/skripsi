@@ -293,7 +293,10 @@ Integrasikan semua konfigurasi ke dalam `routes` saja dengan routing eksplisit:
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Authorization"
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Authorization",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
       }
     }
   ],
@@ -329,6 +332,61 @@ public/
 2. Jalankan `npm run build`
 3. Push ke GitHub dan redeploy di Vercel
 4. Test route: `https://your-app.vercel.app/3d-graph`
+
+### 6. Cache Issues Troubleshooting
+
+**Gejala:**
+- 404 error persisten meskipun konfigurasi routing sudah benar
+- Perubahan di `vercel.json` tidak berpengaruh
+- Route berfungsi lokal tapi gagal di Vercel
+
+**Penyebab:**
+- Aggressive caching di Vercel CDN dan browser cache
+- Konfigurasi lama masih ter-cache
+- Global CDN propagation delay
+
+**Solusi:**
+
+1. **Tambahkan Cache-Busting Headers:**
+   Headers cache-busting sudah ditambahkan di konfigurasi `routes` di atas:
+   ```json
+   "Cache-Control": "no-cache, no-store, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0"
+   ```
+
+2. **Clear Browser Cache:**
+   - Chrome/Edge: `Ctrl+Shift+R` (hard refresh)
+   - Firefox: `Ctrl+F5`
+   - Safari: `Cmd+Shift+R`
+   - Atau buka DevTools → Network → Disable cache
+
+3. **Clear Vercel Cache:**
+   - Buka Vercel Dashboard → Your Project
+   - Klik "Functions" tab → "Purge Everything"
+   - Atau gunakan CLI: `vercel --prod --force`
+   - Tunggu 2-3 menit untuk propagasi CDN global
+
+4. **Deployment Steps:**
+   ```bash
+   git add .
+   git commit -m "fix: update routing and clear cache"
+   git push origin main
+   ```
+   - Tunggu auto-deployment Vercel selesai
+   - Test routes di incognito/private mode
+
+5. **Testing:**
+   Selalu test di incognito/private mode untuk menghindari browser cache:
+   - `https://your-domain.com/`
+   - `https://your-domain.com/3d-graph`
+   - `https://your-domain.com/3d-force-graph/`
+
+**Pencegahan:**
+- Selalu sertakan cache-busting headers di production
+- Test deployment di incognito mode
+- Tunggu 2-3 menit setelah deployment untuk propagasi CDN
+- Gunakan hard refresh saat testing perubahan routing
 
 **Solusi yang Diterapkan:**
 1. **Build Script di package.json:**

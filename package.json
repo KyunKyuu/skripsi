@@ -10,6 +10,7 @@
     "check": "node check-deployment.js",
     "check:domain": "node check-domain-setup.js",
     "build": "node -e \"const fs = require('fs'); const path = require('path'); if (fs.existsSync('public')) fs.rmSync('public', {recursive: true}); fs.mkdirSync('public', {recursive: true}); fs.cpSync('landing', 'public', {recursive: true}); fs.mkdirSync('public/3d-force-graph', {recursive: true}); fs.cpSync('3d-force-graph', 'public/3d-force-graph', {recursive: true});\"",
+    "clear-cache": "node clear-cache.js",
     "start": "npx http-server . -p 3000"
   },
   "keywords": [
