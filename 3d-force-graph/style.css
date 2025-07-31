@@ -173,17 +173,15 @@ body {
 
 .header-content {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
 }
 
 .header-left {
-    position: relative;
-    left: auto;
+    flex-shrink: 0;
 }
 
 .back-btn {
@@ -218,6 +216,9 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 0 2rem;
 }
 
 .header-title i {
@@ -245,6 +246,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0;
 }
 
 .case-selector label {
@@ -727,26 +729,39 @@ body {
     }
 
     .header-content {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: stretch;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
     }
 
-    .case-selector {
-        justify-content: center;
+    .back-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
     }
 
-    .case-selector select {
-        min-width: auto;
-        width: 100%;
+    .header-title {
+        margin: 0 0.5rem;
     }
 
     .header-title h1 {
-        font-size: 1.5rem;
+        font-size: 1.1rem;
     }
 
     .subtitle {
-        display: none;
+        font-size: 0.7rem;
+    }
+
+    .case-selector {
+        gap: 0.5rem;
+        justify-content: flex-end;
+    }
+
+    .case-selector select {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        min-width: 120px;
+        width: auto;
     }
 
     .ai-summary-header {
