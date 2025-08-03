@@ -12,7 +12,9 @@ const AVAILABLE_WALLETS = [
     '2PvbiHwb',
     'FbpCfLxM',
     'Qcsb89L6',
-    'ndjGh8iM'
+    'ndjGh8iM',
+    'ConfnKVM',
+    'ZG98FUCj'
 ];
 
 const NODE_COLORS = {
@@ -784,7 +786,7 @@ window.addEventListener('unhandledrejection', (e) => {
 // ===== BACK BUTTON HANDLER =====
 const backButton = document.getElementById('backToHome');
 if (backButton) {
-    backButton.addEventListener('click', function(e) {
+    backButton.addEventListener('click', function (e) {
         e.preventDefault();
         window.location.href = '/';
     });

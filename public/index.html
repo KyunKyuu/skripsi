@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeguhIqbal - Blockchain Forensic Analysis</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -162,24 +162,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             createSimpleFloatingElements();
             createSimplePanelParticles();
-            handleOrientationChange();
         });
-
-        // Handle orientation change
-        function handleOrientationChange() {
-            const handleResize = () => {
-                const heroLayout = document.querySelector('.hero-layout');
-                if (window.innerWidth <= 768) {
-                    heroLayout.style.flexDirection = 'column-reverse';
-                } else {
-                    heroLayout.style.flexDirection = '';
-                }
-            };
-
-            window.addEventListener('resize', handleResize);
-            window.addEventListener('orientationchange', handleResize);
-            handleResize(); // Initial call
-        }
 
         // Enhanced button interactions
         document.querySelectorAll('.btn-arrow').forEach(button => {
